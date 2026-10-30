@@ -16,5 +16,5 @@ Os algoritmos foram testados de acordo com sua complexidade matemática:
 * **Lei de Amdahl:** paralelismo funciona, mas tem limite, saltar de 2 para 4 núcleos deu um ganho gigante de tempo. Porém, pular de 8 para 12 núcleos quase não mudou nada. O *overhead* (esforço do computador para criar, sincronizar e destruir threads) acaba virando um gargalo.
 
 ## Stacks
-* **Java 17+:** implementação geral
+* **Java 21+:** implementação geral
 * **Python (Jupyter Notebook + Plotly):** consumir o csv e gerar gráficos
