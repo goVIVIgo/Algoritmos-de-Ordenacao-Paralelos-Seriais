@@ -4,8 +4,8 @@ Este repositório contém a implementação e os testes de desempenho comparando
 
 ## Algoritmos Comparados
 Os algoritmos foram testados de acordo com sua complexidade matemática:
-* **O(n log n) quase lineares - 10 Milhões de elementos):** QuickSort e MergeSort.
-* **O(n^2) quadráticos - 100 Mil elementos):** InsertionSort e BubbleSort.
+* **O(n log n) quase lineares - 10 Milhões de elementos:** QuickSort e MergeSort.
+* **O(n^2) quadráticos - 100 Mil elementos:** InsertionSort e BubbleSort.
 
 ## Resultados
 
