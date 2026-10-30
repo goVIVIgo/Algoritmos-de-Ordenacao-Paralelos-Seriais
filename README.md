@@ -1,18 +1,20 @@
-## Getting Started
+# Algoritmos: Seriais vs Em Paralelo
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este repositório contém a implementação e os testes de desempenho comparando a execução clássica (Serial / 1 thread) com a execução concorrente (Paralela / Múltiplas threads) usando `ForkJoinPool` e divisão de blocos.
 
-## Folder Structure
+## Algoritmos Comparados
+Os algoritmos foram testados de acordo com sua complexidade matemática:
+* **Os Eficientes O(n log n) - 10 Milhões de elementos):** QuickSort e MergeSort.
+* **Os Quadráticos O(n^2) - 100 Mil elementos):** InsertionSort e BubbleSort.
 
-The workspace contains two folders by default, where:
+## Resultados
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+* **QuickSort:** o algoritmo mais rápido, ordenou 10 milhões de itens em cerca de ~170ms em paralelo. Foi melhor que o MergeSort porque faz as trocas no próprio array, sem precisar gastar tempo e memória alocando em arrays aux.
+* **MergeSort:** manteve uma média muito estável e previsível graças à sua complexidade linear O(n log n), resolvendo 10 milhões de itens em ~300ms em paralelo. Só não bateu o QuickSort pq juntar as metades exige a criação constante de arrays aux, o que custa tempo e memória.
+* **BubbleSort:** foi bem ruim. Levou quase 12s para ordenar 100 mil itens em  serial. O paralelismo em fases par/ímpar reduziu para ~650ms, mas ele continua sendo bem ruim.
+* **InsertionSort:** em serial, foi ruim quanto o bubblesort, mas na versão paralela (fatiando o array em blocos menores de 10.000), ele teve um *speedup* de mais de 25x, resolvendo o problema em mais ou menos 50ms
+* **Lei de Amdahl:** paralelismo funciona, mas tem limite, saltar de 2 para 4 núcleos deu um ganho gigante de tempo. Porém, pular de 8 para 12 núcleos quase não mudou nada. O *overhead* (esforço do computador para criar, sincronizar e destruir threads) acaba virando um gargalo.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Stacks
+* **Java 17+:** implementação geral
+* **Python (Jupyter Notebook + Plotly):** consumir o csv e gerar gráficos
